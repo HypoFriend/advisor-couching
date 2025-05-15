@@ -1,0 +1,35 @@
+{
+  "addOns": {
+    "common": {
+      "name": "Your Add-on Name",
+      "version": "1.0.0",
+      "description": "A helpful add-on for Google Meet.",
+      "icons": [
+        {
+          "size16": "images/icon16.png",
+          "size32": "images/icon32.png",
+          "size48": "images/icon48.png"
+        }
+      ],
+      "homepageTrigger": {
+        "enabledFunction": "onHomepage"
+      }
+    },
+    "meet": {
+      "onFileScopeGrantedTrigger": {
+        "runFunction": "onFileScopeGranted"
+      },
+      "onTrigger": {
+        "runFunction": "onMeetTrigger",
+        "label": "Open My Add-on"
+      }
+    }
+  },
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/script.container.ui"
+    // Add other necessary scopes based on what your add-on does
+  ],
+  "dependencies": {
+    // Any necessary libraries
+  }
+}

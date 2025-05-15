@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Client Conversation Tracker</title>
+    <style>
+      /* Basic styling */
+      body {
+        font-family: sans-serif;
+      }
+      #controls {
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Client Conversation Tracker</h1>
+    <div id="controls">
+      <button id="start-tracking">Start Tracking</button>
+      <button id="stop-tracking" disabled>Stop Tracking</button>
+    </div>
+    <div id="message">
+      <p>Tracking is ready. Click "Start Tracking" to begin.</p>
+    </div>
+    <script>
+      // Client-side JavaScript
+      const startButton = document.getElementById("start-tracking");
+      const stopButton = document.getElementById("stop-tracking");
+      const messageDiv = document.getElementById("message");
+
+      startButton.addEventListener("click", () => {
+        startButton.disabled = true;
+        stopButton.disabled = false;
+        messageDiv.textContent = "Tracking started...";
+        google.script.run.startTracking();
+      });
+
+      stopButton.addEventListener("click", () => {
+        startButton.disabled = false;
+        stopButton.disabled = true;
+        messageDiv.textContent = "Tracking stopped.";
+        google.script.run.stopTracking();
+      });
+
+      function onTrackingStarted() {
+        messageDiv.textContent = "Tracking started successfully!";
+      }
+
+      function onTrackingStopped() {
+        messageDiv.textContent = "Tracking Stopped!";
+        startButton.disabled = false;
+        stopButton.disabled = true;
+      }
+
+      function displayMessage(msg) {
+        messageDiv.textContent = msg;
+      }
+    </script>
+  </body>
+</html>
